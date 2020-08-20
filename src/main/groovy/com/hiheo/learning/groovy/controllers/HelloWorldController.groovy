@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController
 class HelloWorldController {
   @GetMapping('/hello')
   String hello() {
+    sleep(1234)
     'Hello World!'
   }
 }
