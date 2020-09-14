@@ -10,6 +10,7 @@ class WebSimulator extends Simulation {
  val rampUpTimeSecs = 5
  val testTimeSecs = 20
  val noOfUsers = 10
+ val noOfRequests: Int = System.getProperty("requests", "10").toInt
  val minWaitMs: FiniteDuration = 1000 milliseconds
  val maxWaitMs: FiniteDuration = 3000 milliseconds
  
@@ -27,14 +28,18 @@ class WebSimulator extends Simulation {
   .acceptEncodingHeader("gzip, deflate")
   .userAgentHeader("Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0")
  
- val scn: ScenarioBuilder = scenario(scenarioName).repeat(noOfUsers, "n") {
-   exec { session =>
-     session.set("num", 12)
+ val scn: ScenarioBuilder = scenario(scenarioName).repeat(noOfRequests) {
+   /*exec { session =>
+     session
    }
-    .exec(http(requestName).get("/hello"))
+    .*/
+   exec(http(requestName).get("/hello").check(status.is(200)))
+    //.exec(http(requestName+"health").get("/actuator/health"))
   }
   
  setUp(
-  scn.inject(atOnceUsers(noOfUsers))
-  ).protocols(httpConf)
+  scn.inject(atOnceUsers(noOfUsers)).protocols(httpConf)
+ ).assertions(
+  //global.responseTime.max.lt(3000)
+ )
  }
