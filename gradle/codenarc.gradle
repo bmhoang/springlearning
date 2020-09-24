@@ -8,11 +8,11 @@ apply plugin: 'codenarc'
 
 dependencies {
   codenarc 'org.gmetrics:GMetrics:1.0'
-  codenarc 'org.codenarc:CodeNarc:0.27.0'
+  codenarc 'org.codenarc:CodeNarc:1.1'
 }
 
 codenarc {
-  toolVersion = '0.27.0'
+  toolVersion = '1.1'
   reportFormat = 'html'
 }
 codenarcMain {

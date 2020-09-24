@@ -13,6 +13,9 @@ ruleset {
   ruleset('rulesets/formatting.xml') {
     exclude 'SpaceAroundMapEntryColon'
     exclude 'SpaceAfterClosingBrace' // accept for `}]`
+    Indentation  {
+      spacesPerIndentLevel = 2
+    }
   }
   ruleset('rulesets/generic.xml')
   ruleset('rulesets/grails.xml')

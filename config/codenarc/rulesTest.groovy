@@ -15,6 +15,9 @@ ruleset {
   ruleset('rulesets/formatting.xml') {
     exclude 'SpaceAroundMapEntryColon' // This messes with IntelliJ's formatting of maps
     exclude 'SpaceAfterClosingBrace' // accept for `}]`
+    Indentation  {
+      spacesPerIndentLevel = 2
+    }
   }
   ruleset('rulesets/generic.xml')
   ruleset('rulesets/grails.xml')
